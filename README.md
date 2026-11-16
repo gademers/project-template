@@ -64,12 +64,12 @@ then owns those files.
 ## Git hooks and worktrees
 
 Loading a project's environment installs the rustfmt hook in `.git/hooks` and writes
-`.pre-commit-config.yaml`, which git ignores, into the working tree. Every worktree of a clone
-shares `.git/hooks`, but each needs its own config file, which it gets when it first loads the
-environment. A worktree on a branch from before the project moved to devenv has no devenv
-environment to load, so pre-commit refuses its commits with "No .pre-commit-config.yaml file was
-found" until the branch merges the move. Until then, `PRE_COMMIT_ALLOW_NO_CONFIG=1 git commit`
-skips the hook.
+`.pre-commit-config.yaml`, which git ignores, into the working tree. The hook runs prek, a
+pre-commit replacement that reads that file. Every worktree of a clone shares `.git/hooks`, but
+each needs its own config file, which it gets when it first loads the environment. A worktree on
+a branch from before the project moved to devenv has no devenv environment to load, so prek
+refuses its commits with ``config file not found: `.pre-commit-config.yaml` `` until the branch
+merges the move. Until then, `PREK_ALLOW_NO_CONFIG=1 git commit` skips the hook.
 
 ## CI
 
