@@ -1,0 +1,20 @@
+require_version: ">=2.4.0"
+# devenv never reads the base's own devenv.yaml, so this file declares the inputs the base needs.
+inputs:
+  nixpkgs:
+    url: github:cachix/devenv-nixpkgs/rolling
+  rust-overlay:
+    url: github:oxalica/rust-overlay
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
+  git-hooks:
+    url: github:cachix/git-hooks.nix
+    inputs:
+      nixpkgs:
+        follows: nixpkgs
+  project-template:
+    url: git+ssh://git@github.com/gademers/project-template
+    flake: false
+imports:
+  - project-template/base
