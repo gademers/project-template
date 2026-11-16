@@ -14,7 +14,7 @@ inputs:
       nixpkgs:
         follows: nixpkgs
   project-template:
-    url: git+ssh://git@github.com/gademers/project-template
+    url: git+https://github.com/gademers/project-template
     flake: false
 imports:
   - project-template/base

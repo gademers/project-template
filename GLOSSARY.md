@@ -6,7 +6,7 @@ same commands in each repo. Terms here name its parts and the commands a project
 ## Language
 
 **Project template**:
-The private `gademers/project-template` repo: the base and the starter, with this glossary and its
+The public `gademers/project-template` repo: the base and the starter, with this glossary and its
 ADRs.
 _Avoid_: template on its own (it used to mean a folder copied once), kit, devenv-shared
 

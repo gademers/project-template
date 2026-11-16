@@ -24,9 +24,10 @@ You need a NixOS machine and an SSH key on your GitHub account.
    on each run, and your system builds never query it. You do not need to be a Nix trusted user.
    `programs.direnv.enable` installs direnv and hooks it into your shell.
 
-2. Ask the owner for read access to `gademers/project-template`. For foodborg, also ask for
-   `gademers/food-encyclopedia`. Nix fetches both over SSH with the key in your SSH agent, so check
-   that `ssh-add -l` lists it.
+2. Ask the owner for read access to each project you work on. For foodborg, also ask for
+   `gademers/food-encyclopedia`, its submodule. Git clones them over SSH with the key in your SSH
+   agent, so check that `ssh-add -l` lists it. The project template is public, and Nix fetches the
+   base over HTTPS with no key.
 
 3. Clone a project and let direnv load it:
 

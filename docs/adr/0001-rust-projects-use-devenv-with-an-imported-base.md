@@ -23,7 +23,9 @@ project. Its own crate keeps the nixpkgs toolchain its system build uses.
   deprecated. The hook starts a subshell instead of changing the shell in place. The agent tooling
   runs `direnv exec`, and repos without devenv would still need direnv. Revisit when no repo with
   a non-devenv `.envrc` is left, or when devenv announces it will drop `direnvrc`.
-- **A public repo.** It would need no credentials anywhere. The owner chose private.
+- **A private repo, fetched over SSH.** It was the first choice, on 2026-11-15. Every project's CI
+  would then need a read-only deploy key stored as its own secret. On 2026-11-16 the owner made the
+  repo public instead, since it holds nothing secret.
 
 ## Consequences
 
@@ -38,6 +40,6 @@ project. Its own crate keeps the nixpkgs toolchain its system build uses.
   CLI's version. `require_version: true` compares the CLI with the modules of the separately locked
   `devenv` input instead, and the two drift either way. The v2.4.0 tag's modules report 2.3.1, while
   the default branch locked on 2026-11-16 reports 2.4.0.
-- The repo is private, so projects import it over SSH
-  (`git+ssh://git@github.com/gademers/project-template`). People fetch it with their own SSH keys.
-  CI fetches it with a read-only deploy key on this repo, stored as a secret in each project.
+- The repo is public, so projects import it over HTTPS
+  (`git+https://github.com/gademers/project-template`), and `devenv.lock` records that URL. Nobody,
+  CI included, needs a key or an access grant to fetch the base.

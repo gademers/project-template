@@ -14,14 +14,6 @@ jobs:
       - uses: cachix/cachix-action@v16
         with:
           name: devenv
-      # The project template is private: load its read-only deploy key so Nix can fetch the base.
-      - name: Load the project template's deploy key
-        env:
-          PROJECT_TEMPLATE_DEPLOY_KEY: ${{ secrets.PROJECT_TEMPLATE_DEPLOY_KEY }}
-        run: |
-          eval "$(ssh-agent -s)"
-          ssh-add - <<<"$PROJECT_TEMPLATE_DEPLOY_KEY"
-          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> "$GITHUB_ENV"
       - name: Install devenv
         run: nix profile add nixpkgs#devenv
       - name: devenv test
