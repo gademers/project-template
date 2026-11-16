@@ -36,7 +36,10 @@ project. Its own crate keeps the nixpkgs toolchain its system build uses.
   base points into this repo.
 - Only a project sets `LD_LIBRARY_PATH`. The same variable set in two modules at equal priority
   fails evaluation instead of merging. The base sets `RUST_SRC_PATH` with `lib.mkForce`, so it
-  overrides any value devenv's Rust support sets.
+  overrides any value devenv's Rust support sets. devenv's v2.4.0 tag falls back to nixpkgs' Rust
+  source, another Rust version's standard library, when the toolchain has no separate `rust-src`
+  (`src/modules/languages/rust.nix:443-446`). The default branch locked on 2026-11-16 leaves it
+  unset. The override pins it whichever modules a project's lock holds.
 - Projects require devenv with the constraint string `>=2.4.0`, which devenv checks against the
   CLI's version. `require_version: true` compares the CLI with the modules of the separately locked
   `devenv` input instead, and the two drift either way. The v2.4.0 tag's modules report 2.3.1, while
