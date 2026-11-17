@@ -44,6 +44,10 @@ You need a NixOS machine and an SSH key on your GitHub account.
    direnv allow
    ```
 
+   For foodborg, add `--recurse-submodules` to the clone, or run `git submodule update --init`
+   afterwards. Its build reads the food-encyclopedia submodule, which git fetches over SSH with
+   your key.
+
    The first load downloads or builds the project's toolchain. After that, direnv loads the
    environment whenever you `cd` into the project and unloads it when you leave.
 
