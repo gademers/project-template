@@ -75,6 +75,10 @@ a branch from before the project moved to devenv has no devenv environment to lo
 refuses its commits with ``config file not found: `.pre-commit-config.yaml` `` until the branch
 merges the move. Until then, `PREK_ALLOW_NO_CONFIG=1 git commit` skips the hook.
 
+The hook goes wherever `core.hooksPath` points. A checkout that set it for an older hooks
+folder gets an untracked `pre-commit` in that folder instead: run `git config --unset
+core.hooksPath`, delete that file, then `direnv reload` to move the hook into `.git/hooks`.
+
 ## CI
 
 The starter's workflow runs `devenv test` on GitHub's standard runner, which starts with about
